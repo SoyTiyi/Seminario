@@ -1,0 +1,5 @@
+[front]
+ip ansible_ssh_user=root
+
+[bd]
+ip ansible_ssh_user=root
