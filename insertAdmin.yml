@@ -1,0 +1,12 @@
+---
+- hosts: all
+  tasks:
+  - name: insert new manager user
+    lineinfile:
+      path: /usr/share/tomcat/conf/tomcat-users.xml
+      backup: yes
+      insertafter: '^<role rolename="admin-gui" />'
+      line: '<user username="admin" password="admin" roles="admin-gui,manager-gui,manager-script" />'
+
+
+  

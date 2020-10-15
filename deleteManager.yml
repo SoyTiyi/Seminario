@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+  - name: delete old manager
+    lineinfile:
+      path: /usr/share/tomcat/conf/tomcat-users.xml
+      state: absent
+      regexp: '^<user username="manager" password="manager" roles="manager-gui" />' 
+
+  

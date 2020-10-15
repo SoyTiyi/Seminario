@@ -1,0 +1,35 @@
+---
+- hosts: all
+  tasks:
+  - name: insertar rol manage-script
+    lineinfile: 
+      path: /usr/share/tomcat/conf/tomcat-users.xml
+      backup: yes
+      insertafter: '^<role rolename="manager-gui" />'
+      line: '<role rolename="manager-script" />'
+
+  - name: delete old manager
+    lineinfile:
+      path: /usr/share/tomcat/conf/tomcat-users.xml
+      state: absent
+      regexp: '^<user username="manager" password="manager" roles="manager-gui" />'
+
+  - name: insert new manager user
+    lineinfile:
+      path: /usr/share/tomcat/conf/tomcat-users.xml
+      backup: yes
+      insertafter: '^<role rolename="manager-script" />'
+      line: '<user username="manager" password="manager" roles="manager-gui,manager-script" />'
+
+  - name: delete old manager
+    lineinfile:
+      path: /usr/share/tomcat/conf/tomcat-users.xml
+      state: absent
+      regexp: '^<user username="admin" password="admin" roles="manager-gui,admin-gui" />'
+
+  - name: insert new manager user
+    lineinfile:
+      path: /usr/share/tomcat/conf/tomcat-users.xml
+      backup: yes
+      insertafter: '^<role rolename="admin-gui" />'
+      line: '<user username="admin" password="admin" roles="admin-gui,manager-gui,manager-script" />'

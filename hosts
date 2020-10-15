@@ -1,4 +1,4 @@
 [prueba]
-192.168.0.188 ansible_ssh_user=root
+192.168.0.27 ansible_ssh_user=root
 
 
