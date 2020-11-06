@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  become: yes
   tasks:
   - name: insertar rol manage-script
     lineinfile: 
@@ -33,3 +34,10 @@
       backup: yes
       insertafter: '^<role rolename="admin-gui" />'
       line: '<user username="admin" password="admin" roles="admin-gui,manager-gui,manager-script" />'
+  - name: Ansible create file with content example
+    copy:
+      dest: "/usr/share/tomcat/conf/Catalina/localhost/manager.xml"
+      content: |
+        <Context privileged="true" antiResourceLocking="false" docBase="${catalina.home}/webapps/manager">   
+            <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="^.*$" />
+        </Context>

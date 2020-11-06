@@ -1,4 +1,4 @@
 [prueba]
-192.168.0.27 ansible_ssh_user=root
+34.205.65.147 ansible_ssh_user=seminario
 
 
